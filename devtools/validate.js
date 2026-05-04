@@ -12,7 +12,6 @@ const DATA_DIR = path.join(ROOT, 'data_storage');
 const SCHEMA_DIR = path.join(DATA_DIR, 'schemas');
 
 const MD_TYPES = new Set(['intro', 'portfolio', 'blog_post', 'paragraphed_text']);
-const SKIP_DIRS = new Set(['schemas', 'image']);
 
 function loadSchemas() {
   const schemas = {};
@@ -24,58 +23,88 @@ function loadSchemas() {
   return schemas;
 }
 
-function parseFile(filePath, isMd) {
-  const raw = fs.readFileSync(filePath, 'utf8');
-  if (isMd) return matter(raw).data;
-  return JSON.parse(raw);
-}
-
 function run() {
   const schemas = loadSchemas();
   let errorCount = 0;
 
-  const typeDirs = fs.readdirSync(DATA_DIR, { withFileTypes: true })
-    .filter(d => d.isDirectory() && !SKIP_DIRS.has(d.name))
-    .map(d => d.name);
-
-  for (const typeName of typeDirs) {
-    const schema = schemas[typeName];
-    if (!schema) {
-      console.warn(`[warn] no schema for type "${typeName}" — skipping`);
-      continue;
-    }
-
-    const validate = ajv.compile(schema);
-    const isMd = MD_TYPES.has(typeName);
-    const ext = isMd ? '.md' : '.json';
-    const typeDir = path.join(DATA_DIR, typeName);
-
-    for (const filename of fs.readdirSync(typeDir)) {
-      if (!filename.endsWith(ext)) continue;
-      const filePath = path.join(typeDir, filename);
+  for (const entry of fs.readdirSync(DATA_DIR, { withFileTypes: true })) {
+    // ── JSON files at data_storage root ─────────────────────────────────────
+    if (entry.isFile() && entry.name.endsWith('.json')) {
+      const filePath = path.join(DATA_DIR, entry.name);
       const rel = path.relative(ROOT, filePath);
 
-      let data;
+      // {type}.{lang}.json → array of i18n entries
+      // {type}.json        → single non-i18n object (texcv_structure, webcv_structure)
+      const i18nMatch  = entry.name.match(/^(.+)\.(fi|en)\.json$/);
+      const plainMatch = entry.name.match(/^(.+)\.json$/);
+      const typeName = i18nMatch ? i18nMatch[1] : plainMatch ? plainMatch[1] : null;
+      const isArray  = !!i18nMatch;
+
+      if (!typeName) continue;
+      const schema = schemas[typeName];
+      if (!schema) { console.warn(`[warn] no schema for "${typeName}" — skipping ${rel}`); continue; }
+
+      let parsed;
       try {
-        data = parseFile(filePath, isMd);
+        parsed = JSON.parse(fs.readFileSync(filePath, 'utf8'));
       } catch (e) {
         console.error(`[fail] ${rel}\n  parse error: ${e.message}`);
         errorCount++;
         continue;
       }
 
-      if (!validate(data)) {
-        console.error(`[fail] ${rel}`);
-        for (const err of validate.errors) {
-          console.error(`  ${err.instancePath || '(root)'} ${err.message}`);
-        }
+      if (isArray && !Array.isArray(parsed)) {
+        console.error(`[fail] ${rel}\n  expected a JSON array`);
         errorCount++;
+        continue;
+      }
+
+      const validate = ajv.compile(schema);
+      const items = isArray ? parsed : [parsed];
+      items.forEach((item, i) => {
+        if (!validate(item)) {
+          const loc = isArray ? `${rel}[${i}]` : rel;
+          console.error(`[fail] ${loc}`);
+          validate.errors.forEach(e => console.error(`  ${e.instancePath || '(root)'} ${e.message}`));
+          errorCount++;
+        }
+      });
+    }
+
+    // ── MD files in type subdirectories ─────────────────────────────────────
+    if (entry.isDirectory() && MD_TYPES.has(entry.name)) {
+      const typeName = entry.name;
+      const schema = schemas[typeName];
+      if (!schema) { console.warn(`[warn] no schema for "${typeName}" — skipping`); continue; }
+
+      const validate = ajv.compile(schema);
+      const typeDir = path.join(DATA_DIR, typeName);
+
+      for (const filename of fs.readdirSync(typeDir)) {
+        if (!filename.endsWith('.md')) continue;
+        const filePath = path.join(typeDir, filename);
+        const rel = path.relative(ROOT, filePath);
+
+        let data;
+        try {
+          data = matter(fs.readFileSync(filePath, 'utf8')).data;
+        } catch (e) {
+          console.error(`[fail] ${rel}\n  parse error: ${e.message}`);
+          errorCount++;
+          continue;
+        }
+
+        if (!validate(data)) {
+          console.error(`[fail] ${rel}`);
+          validate.errors.forEach(e => console.error(`  ${e.instancePath || '(root)'} ${e.message}`));
+          errorCount++;
+        }
       }
     }
   }
 
   if (errorCount > 0) {
-    console.error(`\nValidation failed: ${errorCount} file(s) with errors.`);
+    console.error(`\nValidation failed: ${errorCount} error(s).`);
     process.exit(1);
   }
   console.log('All files valid.');

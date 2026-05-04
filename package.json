@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "validate": "node devtools/validate.js"
+    "validate": "node devtools/validate.js",
+    "new": "node devtools/content_editor"
   },
   "devDependencies": {
     "ajv": "^8.12.0",
