@@ -1,0 +1,38 @@
+[
+  {
+    "id": "msc",
+    "lang": "en",
+    "institution": "University of Turku",
+    "degree": "Master of Science",
+    "location": "Turku, Finland",
+    "year_start": 2024,
+    "major": "Software Engineering",
+    "minor": "Tomorrow's AI",
+    "year_end": null,
+    "additional_info": null
+  },
+  {
+    "id": "bsc",
+    "lang": "en",
+    "institution": "University of Turku",
+    "degree": "Bachelor of Science",
+    "location": "Turku, Finland",
+    "year_start": 2020,
+    "major": "Information and Communication Technology",
+    "minor": "Mathematics, Optimization",
+    "year_end": 2024,
+    "additional_info": null
+  },
+  {
+    "id": "hs",
+    "lang": "en",
+    "institution": "Tampereen Teknillinen Lukio",
+    "degree": "High School",
+    "location": "Tampere, Finland",
+    "year_start": 2016,
+    "major": null,
+    "minor": null,
+    "year_end": 2019,
+    "additional_info": "Mathematics and IT-focused Matek-line"
+  }
+]

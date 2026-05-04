@@ -1,0 +1,82 @@
+[
+  {
+    "id": "langHu",
+    "lang": "en",
+    "name": "Hungarian",
+    "category": "human_language",
+    "proficiency": "native",
+    "libraries": [],
+    "matriculation": null,
+    "description": null
+  },
+  {
+    "id": "langFi",
+    "lang": "en",
+    "name": "Finnish",
+    "category": "human_language",
+    "proficiency": null,
+    "libraries": [],
+    "matriculation": {
+      "level": "native",
+      "grade": "L"
+    },
+    "description": null
+  },
+  {
+    "id": "langEn",
+    "lang": "en",
+    "name": "English",
+    "category": "human_language",
+    "proficiency": null,
+    "libraries": [],
+    "matriculation": {
+      "level": "advanced",
+      "grade": "M"
+    },
+    "description": null
+  },
+  {
+    "id": "langSw",
+    "lang": "en",
+    "name": "Swedish",
+    "category": "human_language",
+    "proficiency": null,
+    "libraries": [],
+    "matriculation": {
+      "level": "intermediate",
+      "grade": "L"
+    },
+    "description": null
+  },
+  {
+    "id": "langPy",
+    "lang": "en",
+    "name": "Python",
+    "category": "programming_language",
+    "proficiency": "professional",
+    "libraries": [
+      "NumPy",
+      "Pandas",
+      "PyTorch",
+      "TensorFlow",
+      "FastAPI",
+      "asyncpg",
+      "Pydantic"
+    ],
+    "matriculation": null,
+    "description": "Used for: data processing, AI/ML development, fullstack development (backend). Used in: work, studies, personal projects."
+  },
+  {
+    "id": "langsC",
+    "lang": "en",
+    "name": "C & C++",
+    "category": "programming_language",
+    "proficiency": "familiar",
+    "libraries": [
+      "Boost",
+      "Boost Graph Library"
+    ],
+    "matriculation": null,
+    "description": "Used for: Algorithmic study, Embedded programming (briefly). C++ & Boost Graph Library used to conduct an algorithmics study that was the final project for my BSc thesis. Also base familiarity with C (used during studies)."
+  }
+]
