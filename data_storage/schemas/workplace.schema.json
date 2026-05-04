@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["id", "lang", "company", "role", "location", "year_start"],
+  "additionalProperties": false,
+  "properties": {
+    "id":         { "type": "string" },
+    "lang":       { "type": "string", "enum": ["fi", "en"] },
+    "company":    { "type": "string" },
+    "role":       { "type": "string" },
+    "location":   { "type": "string" },
+    "year_start": { "type": "integer" },
+    "year_end":   { "type": ["integer", "null"] },
+    "summary":    { "type": ["string", "null"] },
+    "tags":       { "type": "array", "items": { "type": "string" } }
+  }
+}

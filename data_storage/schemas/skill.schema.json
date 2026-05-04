@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["id", "lang", "name", "category"],
+  "additionalProperties": false,
+  "properties": {
+    "id":       { "type": "string" },
+    "lang":     { "type": "string", "enum": ["fi", "en"] },
+    "name":     { "type": "string" },
+    "category": {
+      "type": "string",
+      "enum": ["programming_language", "framework", "tool", "database", "platform", "human_language"]
+    },
+    "proficiency": {
+      "type": ["string", "null"],
+      "enum": ["expert", "proficient", "familiar", "native", "fluent", "professional", "conversational", null]
+    },
+    "libraries": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "matriculation": {
+      "type": ["object", "null"],
+      "required": ["level", "grade"],
+      "additionalProperties": false,
+      "properties": {
+        "level": { "type": "string", "enum": ["native", "advanced", "intermediate"] },
+        "grade": { "type": "string", "enum": ["L", "E", "M", "C", "B", "A", "I"] }
+      }
+    },
+    "description": { "type": ["string", "null"] }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["id", "lang", "institution", "degree", "location", "year_start"],
+  "additionalProperties": false,
+  "properties": {
+    "id":              { "type": "string" },
+    "lang":            { "type": "string", "enum": ["fi", "en"] },
+    "institution":     { "type": "string" },
+    "degree":          { "type": "string" },
+    "major":           { "type": ["string", "null"] },
+    "minor":           { "type": ["string", "null"] },
+    "location":        { "type": "string" },
+    "year_start":      { "type": "integer" },
+    "year_end":        { "type": ["integer", "null"] },
+    "additional_info": { "type": ["string", "null"] }
+  }
+}

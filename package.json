@@ -1,0 +1,12 @@
+{
+  "name": "cvnew",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "validate": "node devtools/validate.js"
+  },
+  "devDependencies": {
+    "ajv": "^8.12.0",
+    "gray-matter": "^4.0.3"
+  }
+}

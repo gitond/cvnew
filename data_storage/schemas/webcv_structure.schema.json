@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["pages"],
+  "additionalProperties": false,
+  "properties": {
+    "pages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["slug", "title"],
+        "additionalProperties": false,
+        "properties": {
+          "slug": { "type": "string" },
+          "title": {
+            "type": "object",
+            "required": ["fi", "en"],
+            "properties": {
+              "fi": { "type": "string" },
+              "en": { "type": "string" }
+            }
+          },
+          "sections": { "type": "array" }
+        }
+      }
+    }
+  }
+}
