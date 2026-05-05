@@ -12,7 +12,7 @@ const ROOT = path.join(__dirname, '..', '..');
 const DATA_DIR = path.join(ROOT, 'data_storage');
 const SCHEMA_DIR = path.join(DATA_DIR, 'schemas');
 
-const MD_TYPES = new Set(['intro', 'portfolio', 'blog_post', 'paragraphed_text']);
+const MD_TYPES = new Set(['intro', 'portfolio', 'blog_post', 'paragraphed_text', 'publication']);
 const EXCLUDED = new Set(['texcv_structure', 'webcv_structure']);
 
 function loadSchemas() {
@@ -26,10 +26,10 @@ function loadSchemas() {
   return schemas;
 }
 
-function defaultFor(prop) {
+function defaultFor(prop, key) {
   if (!prop) return null;
   if (Array.isArray(prop.type)) return null;   // nullable — default to null
-  if (prop.enum) return prop.enum[0];
+  if (prop.enum) return key === 'lang' ? 'en' : prop.enum[0];
   switch (prop.type) {
     case 'string':  return '';
     case 'integer': return 0;
@@ -49,7 +49,7 @@ function buildTemplate(schema, isMd) {
     ...Object.keys(props).filter(k => !required.has(k)),
   ];
   const obj = {};
-  for (const key of ordered) obj[key] = defaultFor(props[key]);
+  for (const key of ordered) obj[key] = defaultFor(props[key], key);
 
   if (isMd) return matter.stringify('\nWrite content here.\n', obj);
   return JSON.stringify(obj, null, 2);
@@ -133,8 +133,14 @@ async function main() {
   const isMd = MD_TYPES.has(typeName);
   const ext = isMd ? '.md' : '.json';
 
+  const template = buildTemplate(schema, isMd);
   console.log(`\nOpening ${typeName} template in $EDITOR...`);
-  let raw = openEditor(buildTemplate(schema, isMd), ext);
+  let raw = openEditor(template, ext);
+
+  if (raw.trim() === template.trim()) {
+    const proceed = await ask('No changes made. Save anyway? (y/n) ');
+    if (proceed.toLowerCase() !== 'y') { console.log('Aborted.'); process.exit(0); }
+  }
 
   for (;;) {
     let data;

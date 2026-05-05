@@ -13,6 +13,21 @@
     "location":        { "type": "string" },
     "year_start":      { "type": "integer" },
     "year_end":        { "type": ["integer", "null"] },
-    "additional_info": { "type": ["string", "null"] }
+    "additional_info": { "type": ["string", "null"] },
+    "courses": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "required": ["name", "grade", "grading_system", "completion_year"],
+        "additionalProperties": false,
+        "properties": {
+          "name":            { "type": "string" },
+          "grade":           { "type": "string" },
+          "grading_system":  { "type": "string" },
+          "completion_year": { "type": "integer" },
+          "tags":            { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
   }
 }

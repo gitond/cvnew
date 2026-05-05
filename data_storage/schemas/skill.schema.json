@@ -15,9 +15,17 @@
       "type": ["string", "null"],
       "enum": ["expert", "proficient", "familiar", "native", "fluent", "professional", "conversational", null]
     },
-    "libraries": {
-      "type": "array",
-      "items": { "type": "string" }
+    "subtechnologies": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "object",
+        "required": ["name", "items"],
+        "additionalProperties": false,
+        "properties": {
+          "name":  { "type": "string" },
+          "items": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+        }
+      }
     },
     "matriculation": {
       "type": ["object", "null"],

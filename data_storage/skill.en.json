@@ -5,7 +5,7 @@
     "name": "Hungarian",
     "category": "human_language",
     "proficiency": "native",
-    "libraries": [],
+    "subtechnologies": null,
     "matriculation": null,
     "description": null
   },
@@ -15,7 +15,7 @@
     "name": "Finnish",
     "category": "human_language",
     "proficiency": null,
-    "libraries": [],
+    "subtechnologies": null,
     "matriculation": {
       "level": "native",
       "grade": "L"
@@ -28,7 +28,7 @@
     "name": "English",
     "category": "human_language",
     "proficiency": null,
-    "libraries": [],
+    "subtechnologies": null,
     "matriculation": {
       "level": "advanced",
       "grade": "M"
@@ -41,7 +41,7 @@
     "name": "Swedish",
     "category": "human_language",
     "proficiency": null,
-    "libraries": [],
+    "subtechnologies": null,
     "matriculation": {
       "level": "intermediate",
       "grade": "L"
@@ -54,14 +54,29 @@
     "name": "Python",
     "category": "programming_language",
     "proficiency": "professional",
-    "libraries": [
-      "NumPy",
-      "Pandas",
-      "PyTorch",
-      "TensorFlow",
-      "FastAPI",
-      "asyncpg",
-      "Pydantic"
+    "subtechnologies": [
+      {
+        "name": "libraries",
+        "items": [
+          "NumPy",
+          "Pandas",
+          "PyTorch",
+          "TensorFlow",
+          "FastAPI",
+          "asyncpg",
+          "Pydantic"
+        ]
+      },
+      {
+        "name": "package/environment management",
+        "items": [
+          "pip",
+          "uv",
+          "pyenv",
+          "venv",
+          "jupyter"
+        ]
+      }
     ],
     "matriculation": null,
     "description": "Used for: data processing, AI/ML development, fullstack development (backend). Used in: work, studies, personal projects."
@@ -72,11 +87,212 @@
     "name": "C & C++",
     "category": "programming_language",
     "proficiency": "familiar",
-    "libraries": [
-      "Boost",
-      "Boost Graph Library"
+    "subtechnologies": [
+      {
+        "name": "libraries",
+        "items": [
+          "Boost",
+          "Boost Graph Library"
+        ]
+      }
     ],
     "matriculation": null,
     "description": "Used for: Algorithmic study, Embedded programming (briefly). C++ & Boost Graph Library used to conduct an algorithmics study that was the final project for my BSc thesis. Also base familiarity with C (used during studies)."
+  },
+  {
+    "id": "langJava",
+    "lang": "en",
+    "name": "Java",
+    "category": "programming_language",
+    "proficiency": "familiar",
+    "subtechnologies": null,
+    "matriculation": null,
+    "description": "Main language during university education. Used for: object oriented programming, server backends, multithreaded applications, android development"
+  },
+  {
+    "id": "langJs",
+    "lang": "en",
+    "name": "JavaScript",
+    "category": "programming_language",
+    "proficiency": "proficient",
+    "subtechnologies": [
+      {
+        "name": "frameworks",
+        "items": [
+          "React",
+          "React Native",
+          "Vue 3",
+          "Node.js"
+        ]
+      },
+      {
+        "name": "libraries",
+        "items": [
+          "Transformers.js"
+        ]
+      }
+    ],
+    "matriculation": null,
+    "description": "Used for: frontend development, backend development (Node.js), Mobile app development (React Native), Functional programming for data routing (on server backend), Neural network inference in a web-based environment (Transformers.js)"
+  },
+  {
+    "id": "dbSql",
+    "lang": "en",
+    "name": "SQL",
+    "category": "database",
+    "proficiency": "proficient",
+    "subtechnologies": [
+      {
+        "name": "flavors",
+        "items": [
+          "PostgreSQL",
+          "MariaDB"
+        ]
+      }
+    ],
+    "matriculation": null,
+    "description": "Used PostgreSQL in: Current work at Cloop.io as application database. Used MariaDB: During \"Introduction to databases\" course at University of Turku"
+  },
+  {
+    "id": "dbMongo",
+    "lang": "en",
+    "name": "MongoDB",
+    "category": "database",
+    "proficiency": "familiar",
+    "subtechnologies": null,
+    "matriculation": null,
+    "description": "Used during \"Web and Mobile Programming\" course at University of Turku as application database."
+  },
+  {
+    "id": "dbVector",
+    "lang": "en",
+    "name": "Vector databases",
+    "category": "database",
+    "proficiency": "proficient",
+    "subtechnologies": [
+      {
+        "name": "types",
+        "items": [
+          "Qdrant",
+          "pgvector for Postgres"
+        ]
+      }
+    ],
+    "matriculation": null,
+    "description": "Used pgvector in: Cloop.io database to store vectorized data for RAG-application. Used Qdrant in: Cloop.io RAG project before switching to pgvector (switching was done to integrate vector data to larger application database)"
+  },
+  {
+    "id": "oLinux",
+    "lang": "en",
+    "name": "Linux",
+    "category": "platform",
+    "proficiency": "proficient",
+    "subtechnologies": [
+      {
+        "name": "distros",
+        "items": [
+          "Fedora",
+          "Ubuntu",
+          "Debian"
+        ]
+      },
+      {
+        "name": "package managers",
+        "items": [
+          "dnf",
+          "apt"
+        ]
+      }
+    ],
+    "matriculation": null,
+    "description": "Used as primary home operating system, to run remote server in Cloop.io project and as base systems in containerization."
+  },
+  {
+    "id": "oBash",
+    "lang": "en",
+    "name": "Command Line Tools",
+    "category": "tool",
+    "proficiency": "proficient",
+    "subtechnologies": [
+      {
+        "name": "Examples",
+        "items": [
+          "bash",
+          "git",
+          "make",
+          "ssh"
+        ]
+      }
+    ],
+    "matriculation": null,
+    "description": "Bash: familiarity with command line usage and workflows. Git: version control, repository management. Make: Building .sh pipelines, using them in CI/CD systems (GitHub Actions), ssh: Connecting to production backend in Cloop.io project."
+  },
+  {
+    "id": "oFigma",
+    "lang": "en",
+    "name": "Figma",
+    "category": "tool",
+    "proficiency": "familiar",
+    "subtechnologies": null,
+    "matriculation": null,
+    "description": "Used during \"Usability, User Experience and Analytics\" course at University of Turku as UI/UX-design tool."
+  },
+  {
+    "id": "oAndroid",
+    "lang": "en",
+    "name": "Android Studio",
+    "category": "tool",
+    "proficiency": "familiar",
+    "subtechnologies": null,
+    "matriculation": null,
+    "description": "Java version. Used to develop STT-app for Android as a part of the VITAR-project."
+  },
+  {
+    "id": "oContainerization",
+    "lang": "en",
+    "name": "Containerization tools",
+    "category": "tool",
+    "proficiency": "proficient",
+    "subtechnologies": [
+      {
+        "name": "environments",
+        "items": [
+          "Docker",
+          "Docker Compose",
+          "Podman"
+        ]
+      }
+    ],
+    "matriculation": null,
+    "description": "Used in: Cloop.io project to containerize various parts of the Cloop.io software."
+  },
+  {
+    "id": "oAI",
+    "lang": "en",
+    "name": "AI Tools",
+    "category": "platform",
+    "proficiency": "proficient",
+    "subtechnologies": [
+      {
+        "name": "libraries",
+        "items": [
+          "PyTorch",
+          "TensorFlow"
+        ]
+      },
+      {
+        "name": "environments",
+        "items": ["Hugging Face"]
+      },
+      {
+        "name": "LLMs & code generators",
+        "items": [
+          "ChatGPT",
+          "Claude Code"
+        ]
+      }
+    ],
+    "matriculation": null,
+    "description": "Used in education (MSc AI Minor), work (MSc Thesis, VITAR Project, Cloop.io). Trained text based (NLP) neural networks during education with PyTorch using the Hugging Face ecosystem. Trained Computer Vision systems with TensorFlow during studies and work (\"Computer Vision and Sensor Fusion\" course, MSc Thesis, VITAR Project). \"Training\" includes both training from scratch and fine tuning existing systems. Built RAG system at Cloop.io. Use code Generation (Claude Code) in daily workflow. Familiar with LLM techniques, such as prompt engineering and n-shot prompting."
   }
 ]

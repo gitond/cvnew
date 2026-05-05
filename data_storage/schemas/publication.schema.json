@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["id", "lang", "title", "type", "status"],
+  "additionalProperties": false,
+  "properties": {
+    "id":     { "type": "string" },
+    "lang":   { "type": "string", "enum": ["fi", "en"] },
+    "title":  { "type": "string" },
+    "type":   { "type": "string", "enum": ["bsc_thesis", "msc_thesis"] },
+    "status": { "type": "string", "enum": ["published", "ongoing"] },
+    "tags":   { "type": "array", "items": { "type": "string" } },
+    "relevant_portfolio_items": { "type": "array", "items": { "type": "string" } },
+    "link": { "type": ["string", "null"] }
+  }
+}

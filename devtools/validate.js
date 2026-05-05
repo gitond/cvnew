@@ -11,7 +11,7 @@ const ROOT = path.join(__dirname, '..');
 const DATA_DIR = path.join(ROOT, 'data_storage');
 const SCHEMA_DIR = path.join(DATA_DIR, 'schemas');
 
-const MD_TYPES = new Set(['intro', 'portfolio', 'blog_post', 'paragraphed_text']);
+const MD_TYPES = new Set(['intro', 'portfolio', 'blog_post', 'paragraphed_text', 'publication']);
 
 function loadSchemas() {
   const schemas = {};

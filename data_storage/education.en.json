@@ -9,7 +9,20 @@
     "major": "Software Engineering",
     "minor": "Tomorrow's AI",
     "year_end": null,
-    "additional_info": null
+    "additional_info": null,
+    "courses": [{
+      "name":"Computer Vision and Sensor Fusion",
+      "grade":"3",
+      "grading_system":"1-5",
+      "completion_year":2025,
+      "tags":["computer vision", "sensor fusion", "AI", "neural networks", "TensorFlow", "Python"]
+    },{
+      "name":"Textual Data Analysis",
+      "grade":"2",
+      "grading_system":"1-5",
+      "completion_year":2025,
+      "tags":["NLP", "AI", "neural networks", "PyTorch", "Hugging Face", "Python"]
+    }]
   },
   {
     "id": "bsc",
@@ -21,7 +34,14 @@
     "major": "Information and Communication Technology",
     "minor": "Mathematics, Optimization",
     "year_end": 2024,
-    "additional_info": null
+    "additional_info": null,
+    "courses": [{
+      "name":"Web and mobile programming",
+      "grade":"5",
+      "grading_system":"1-5",
+      "completion_year":2022,
+      "tags":["web development", "mobile development", "fullstack development", "React", "JavaScript", "Node.js", "MongoDB", "React Native"]
+    }]
   },
   {
     "id": "hs",

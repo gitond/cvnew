@@ -1,0 +1,99 @@
+[
+  {
+    "id": "wVitar",
+    "lang": "en",
+    "company": "VITAR project",
+    "role": "Project member, Software Engineering & AI",
+    "location": "Turku, Finland",
+    "year_start": 2024,
+    "year_end": null,
+    "summary": "A frozen startup project where we attempted to develop an AI research assistant for biolab workflows. In the beginning I was the only software developer involved in this project. My tasks involved mobile development (Android Studio, Java), software architecture design, and managing AI systems (my first introduction to RAG, Vector databases, N8N and many many more).",
+    "tags": [
+      "mobile development",
+      "Android development",
+      "AI",
+      "RAG",
+      "Java",
+      "biotech"
+    ]
+  },
+  {
+    "id": "wCloop",
+    "lang": "en",
+    "company": "Cloop.io",
+    "role": "AI Engineer",
+    "location": "Turku, Finland",
+    "year_start": 2025,
+    "year_end": null,
+    "summary": "The first developer in this company, responsible for designing and building many parts of the current Cloop product, including: RAG (initial version, first vector database, current source scoring system), email system. Active on every part of the stack: Frontend (Chat component, product dashboard), Backend and Database. Relevant technologies: Python (FastAPI, Pydantic), PostgreSQL (incl. pgvector for RAG similarity search), TypeScript.",
+    "tags": [
+      "fullstack development",
+      "RAG",
+      "AI",
+      "backend development",
+      "PostgreSQL"
+    ]
+  },
+  {
+    "id": "wHiD",
+    "lang": "en",
+    "company": "HiDucator Ltd",
+    "role": "Summer trainee",
+    "location": "Turku, Finland",
+    "year_start": 2020,
+    "year_end": 2020,
+    "summary": "My main job was to edit educational videos for this e-learning company. I also helped in shooting and producing the raw material for video production.",
+    "tags": [
+      "video editing",
+      "media",
+      "video production"
+    ]
+  },
+  {
+    "id": "wTETIT",
+    "lang": "en",
+    "company": "Municipality of Kangasala, IT-support for Schools",
+    "role": "Work practice program attendee with TET",
+    "location": "Kangasala, Finland",
+    "year_start": 2015,
+    "year_end": 2015,
+    "summary": "My job was helping to install various devices and building a test network for the first electronic matriculation exams.",
+    "tags": [
+      "TET",
+      "IT support",
+      "hardware setup",
+      "network setup"
+    ]
+  },
+  {
+    "id": "wTETSyrenka",
+    "lang": "en",
+    "company": "Ravintola Syrenka",
+    "role": "Work practice program attendee with TET",
+    "location": "Tampere, Finland",
+    "year_start": 2015,
+    "year_end": 2015,
+    "summary": "I helped with cleaning and carrying shopping.",
+    "tags": [
+      "TET",
+      "non-tech"
+    ]
+  },
+  {
+    "id": "wITLabs",
+    "lang": "en",
+    "company": "Information Technology Labs, University of Turku",
+    "role": "Project member",
+    "location": "Turku, Finland",
+    "year_start": 2023,
+    "year_end": 2023,
+    "summary": "In this project me and a few other students take part in developing a checkout application to be used with digital learning platforms as a SaaS-service. We used TypeScript and the T3 Stack. My job was to build the backend of the webhook integration.",
+    "tags": [
+      "SaaS",
+      "TypeScript",
+      "T3 Stack",
+      "backend development",
+      "webhooks"
+    ]
+  }
+]
