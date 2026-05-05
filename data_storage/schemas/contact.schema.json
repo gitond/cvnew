@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Contact",
+  "type": "object",
+  "required": ["name", "email"],
+  "additionalProperties": false,
+  "properties": {
+    "name":     { "type": "string", "minLength": 1 },
+    "title":    { "type": ["string", "null"] },
+    "phone":    { "type": ["string", "null"] },
+    "email":    { "type": "string", "minLength": 1 },
+    "linkedin": { "type": ["string", "null"] },
+    "github":   { "type": ["string", "null"] },
+    "location": { "type": ["string", "null"] }
+  }
+}

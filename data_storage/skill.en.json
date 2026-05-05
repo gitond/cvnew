@@ -270,7 +270,7 @@
     "id": "oAI",
     "lang": "en",
     "name": "AI Tools",
-    "category": "platform",
+    "category": "tool",
     "proficiency": "proficient",
     "subtechnologies": [
       {
