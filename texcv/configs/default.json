@@ -30,12 +30,15 @@
       "heading":           "Education",
       "show_courses":      true,
       "min_course_grade":  null,
-      "course_grading_systems": ["1-5"]
+      "course_grading_systems": ["1-5"],
+      "course_include_tags": [],
+      "course_exclude_tags": []
     },
 
     "publications": {
       "enabled": true,
       "heading": "Publications & Theses",
+      "published_only": false,
       "include_tags": [],
       "exclude_tags": []
     },

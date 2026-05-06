@@ -26,7 +26,7 @@ Controls geometry package settings.
 
 | Key | Default | Description |
 |-----|---------|-------------|
-| `margin_top` | `"1.5cm"` | Top margin |
+| `margin_top` | `"2.5cm"` | Top margin |
 | `margin_bottom` | `"2cm"` | Bottom margin |
 | `margin_left` | `"2cm"` | Left margin |
 | `margin_right` | `"2cm"` | Right margin |
@@ -47,7 +47,7 @@ Controls geometry package settings.
 
 | Key | Default | Description |
 |-----|---------|-------------|
-| `separator` | `" | "` | String between contact items in the header line |
+| `separator` | `"|"` | String between contact items in the header line |
 
 ---
 
@@ -77,8 +77,10 @@ Two-column table (years | content), newest institution first.
 | `enabled` | `true` | Include this section |
 | `heading` | `"Education"` | Section heading |
 | `show_courses` | `true` | Whether to list relevant courses under each institution |
-| `min_course_grade` | `"3"` | Minimum numeric grade to include a course (as a string, compared numerically) |
+| `min_course_grade` | `null` | Minimum numeric grade to include a course (as a string, compared numerically). `null` = include all. |
 | `course_grading_systems` | `["1-5"]` | Only include courses whose `grading_system` matches one of these values. Use `[]` for all. |
+| `course_include_tags` | `[]` | If non-empty, only courses with at least one matching tag are shown |
+| `course_exclude_tags` | `[]` | Courses with any of these tags are excluded |
 
 ---
 
@@ -90,6 +92,7 @@ Bullet list of publications/theses.
 |-----|---------|-------------|
 | `enabled` | `true` | Include this section |
 | `heading` | `"Publications & Theses"` | Section heading |
+| `published_only` | `false` | If `true`, only entries with `status: "published"` are shown |
 | `include_tags` | `[]` | If non-empty, only items that have at least one of these tags are included |
 | `exclude_tags` | `[]` | Items with any of these tags are excluded |
 

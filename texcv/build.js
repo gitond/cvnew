@@ -80,6 +80,13 @@ function priorityScore(item, prioritize) {
   return tags.filter(t => prioritize.includes(t)).length;
 }
 
+function locationImplied(name, location) {
+  if (!location) return false;
+  const city = location.split(',')[0].trim().toLowerCase();
+  if (!city) return false;
+  return name.toLowerCase().split(/[\s,]+/).some(w => w.startsWith(city));
+}
+
 function makeYearRange(start, end, ongoingSuffix) {
   const suffix = ongoingSuffix !== undefined ? ongoingSuffix : '--present';
   if (end == null)       return `${start}${suffix}`;
@@ -171,7 +178,8 @@ function buildEducation() {
   const widest   = yearStrs.reduce((a, b) => b.length > a.length ? b : a, '');
 
   const entries = sorted.map((edu, i) => {
-    const degLine   = `\\textbf{${esc(edu.degree)}}, ${esc(edu.institution)}, ${esc(edu.location)}`;
+    const loc       = locationImplied(edu.institution, edu.location) ? '' : `, ${esc(edu.location)}`;
+    const degLine   = `\\textbf{${esc(edu.degree)}}, ${esc(edu.institution)}${loc}`;
     const majorLine = edu.major ? `\\newline \\textit{Major:} ${esc(edu.major)}` : '';
     const minorLine = edu.minor ? `\\newline \\textit{Minor:} ${esc(edu.minor)}` : '';
     const infoLine  = edu.additional_info ? `\\newline \\textit{${esc(edu.additional_info)}}` : '';
@@ -180,9 +188,13 @@ function buildEducation() {
     if (scfg.show_courses && edu.courses && edu.courses.length) {
       const systems  = scfg.course_grading_systems || [];
       const minGrade = scfg.min_course_grade != null ? parseFloat(scfg.min_course_grade) : null;
+      const incTags  = scfg.course_include_tags || [];
+      const excTags  = scfg.course_exclude_tags || [];
       const filtered = edu.courses.filter(c => {
         if (systems.length && !systems.includes(c.grading_system)) return false;
         if (minGrade != null && gradeToNum(c.grade, c.grading_system) < minGrade) return false;
+        if (excTags.length && (c.tags || []).some(t => excTags.includes(t))) return false;
+        if (incTags.length && !(c.tags || []).some(t => incTags.includes(t))) return false;
         return true;
       });
       if (filtered.length) {
@@ -211,7 +223,10 @@ function buildPublications() {
   if (!scfg || !scfg.enabled) return '';
   const inc = scfg.include_tags || [];
   const exc = scfg.exclude_tags || [];
-  const filtered = publications.filter(p => hasTags(p, inc, exc));
+  const filtered = publications.filter(p => {
+    if (scfg.published_only && p.status !== 'published') return false;
+    return hasTags(p, inc, exc);
+  });
   if (!filtered.length) return '';
 
   const items = filtered.map(pub => {
@@ -250,7 +265,8 @@ function buildWork() {
   const widest   = yearStrs.reduce((a, b) => b.length > a.length ? b : a, '');
 
   const entries = filtered.map((w, i) => {
-    const header  = `\\textbf{${esc(w.role)}}, ${esc(w.company)}, ${esc(w.location)}`;
+    const loc     = locationImplied(w.company, w.location) ? '' : `, ${esc(w.location)}`;
+    const header  = `\\textbf{${esc(w.role)}}, ${esc(w.company)}${loc}`;
     const summary = w.summary ? `\\newline ${esc(w.summary)}` : '';
     return [
       `\\begin{tabularx}{\\linewidth}{@{}p{\\cvleftwidth}X@{}}`,
