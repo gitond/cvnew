@@ -298,26 +298,24 @@ function buildProjects() {
   if (scfg.max) filtered = filtered.slice(0, scfg.max);
 
   const items = filtered.map(proj => {
-    const yearRange = proj.year_start
-      ? makeYearRange(proj.year_start, proj.year_end, ' to present')
-      : '';
-    const stackTags = (proj.tech_stack || [])
-      .map(t => `\\colorbox{gray!15}{\\strut\\small ${esc(t)}}`)
-      .join(' ');
+    const yearRange  = proj.year_start ? makeYearRange(proj.year_start, proj.year_end, ' to present') : '';
+    const stackTags  = (proj.tech_stack || []).map(t => `\\colorbox{gray!15}{\\strut\\small ${esc(t)}}`).join(' ');
     const repoLink   = proj.repo_url ? ` \\href{${proj.repo_url}}{[repo]}` : '';
     const demoLink   = proj.demo_url ? ` \\href{${proj.demo_url}}{[demo]}` : '';
     const statusNote = proj.status === 'archived' ? ' \\textit{(archived)}' : '';
-    const desc       = proj.description ? `\\\\${esc(proj.description)}` : '';
     const metaParts  = [yearRange ? `\\small ${esc(yearRange)}` : '', stackTags].filter(Boolean).join('\\quad ');
-    return `  \\item[\\textbullet] \\textbf{${esc(proj.title)}}${statusNote}${repoLink}${demoLink} \\\\` +
-           `${metaParts}${desc}`;
+    const desc       = proj.description ? `\\\\\n${esc(proj.description)}` : '';
+    return [
+      `\\noindent\\begin{minipage}[t]{\\linewidth}`,
+      `  {\\large\\textbf{${esc(proj.title)}}}${statusNote}${repoLink}${demoLink}\\\\`,
+      `  {${metaParts}}${desc}`,
+      `\\end{minipage}`
+    ].join('\n');
   });
 
   return [
     `\\cvsection{${esc(scfg.heading || 'Selected Projects')}}`,
-    `\\begin{description}`,
-    items.join('\n'),
-    `\\end{description}`
+    items.join('\n\\par\\vspace{4pt}\n')
   ].join('\n');
 }
 
