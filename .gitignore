@@ -1,1 +1,4 @@
 node_modules/
+texcv/*.aux
+texcv/*.log
+texcv/*.out
